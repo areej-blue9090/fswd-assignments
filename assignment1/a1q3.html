@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Factorial & Sum of Digits</title>
+</head>
+<body>
+
+  <h2>Calculate Factorial and Sum of Digits</h2>
+  <button onclick="calculate()">Run</button>
+
+  <script>
+
+    function getFactorial(num) {
+      let fact = 1;
+      for (let i = 1; i <= num; i++) {
+        fact *= i;
+      }
+      return fact;
+    }
+
+    function getSumOfDigits(num) {
+      let sum = 0;
+      let temp = num;
+      while (temp > 0) {
+        sum += temp % 10;
+        temp = Math.floor(temp / 10);
+      }
+      return sum;
+    }
+
+    function calculate() {
+      let input = prompt("Enter a positive integer (n):");
+      let n = parseInt(input);
+
+      if (isNaN(n) || n < 0) {
+        alert("Please enter a valid positive integer!");
+        return;
+      }
+
+      let factorial = getFactorial(n);
+      let sumOfDigits = getSumOfDigits(n);
+
+      alert("Input Number (n): " + n + 
+            "\nFactorial of " + n + ": " + factorial + 
+            "\nSum of digits: " + sumOfDigits);
+    }
+  </script>
+
+</body>
+</html>
