@@ -53,13 +53,8 @@
 
   <script>
     function validateForm() {
-      // Clear previous error messages
-      document.querySelectorAll('.error').forEach(el => el.innerText = '');
-      document.getElementById('successMsg').innerText = '';
-
       let isValid = true;
 
-      // 1. Student ID: "S" followed by exactly 5 digits
       const studentId = document.getElementById('studentId').value.trim();
       const idRegex = /^S\d{5}$/;
       if (!idRegex.test(studentId)) {
@@ -67,7 +62,6 @@
         isValid = false;
       }
 
-      // 2. Student Name: Alphabets and spaces only, min length 5
       const studentName = document.getElementById('studentName').value.trim();
       const nameRegex = /^[A-Za-z\s]{5,}$/;
       if (!nameRegex.test(studentName)) {
@@ -75,7 +69,6 @@
         isValid = false;
       }
 
-      // 3. Email: Standard format (username@domain.com)
       const email = document.getElementById('email').value.trim();
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
@@ -83,7 +76,6 @@
         isValid = false;
       }
 
-      // 4. Mobile Number: 10 digits starting with 6, 7, 8, or 9
       const mobile = document.getElementById('mobile').value.trim();
       const mobileRegex = /^[6-9]\d{9}$/;
       if (!mobileRegex.test(mobile)) {
@@ -91,7 +83,6 @@
         isValid = false;
       }
 
-      // 5. Password: Min 8 chars, 1 uppercase, 1 lowercase, 1 digit, 1 special char
       const password = document.getElementById('password').value;
       const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^_\-~])[A-Za-z\d@$!%*?&#^_\-~]{8,}$/;
       if (!passRegex.test(password)) {
