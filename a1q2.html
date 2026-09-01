@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cricket Match Scoreboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+
+    .scoreboard {
+      max-width: 650px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .header {
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+    }
+
+    .teams {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+  
+
+    .ind-color { background-color: #007bff; }
+    .aus-color { background-color: #ffc107; color: black; }
+
+    .leading-score {
+      background-color: #d4edda;
+      padding: 10px;
+      border: 1px solid #c3e6cb;
+      font-family: 'Courier New', monospace;
+      font-size: 28px;
+      font-weight: bold;
+      color: #155724;
+      text-align: center;
+    }
+
+    .status-bar, .live-info {
+      background: #eee;
+      padding: 8px 12px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scoreboard">
+    <div class="header">
+      <h2>ICC World Cup Final</h2>
+      <p>Venue: Ahmedabad Stadium</p>
+    </div>
+
+    <div class="teams">
+      <div>
+        <div class="team-logo aus-color">AUS</div>
+        <h3>Australia</h3>
+        <p>Score: 240/10 (50.0 ov)</p>
+      </div>
+
+      <strong>VS</strong>
+
+      <div>
+        <div class="team-logo ind-color">IND</div>
+        <h3>India</h3>
+        <div class="leading-score">205/3</div>
+        <p>Overs: 38.2 / 50.0</p>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <p><strong>Status:</strong> India need 36 runs to win</p>
+      <p><strong>Req Run Rate:</strong> 3.08 | <strong>Current RR:</strong> 5.34</p>
+    </div>
+
+    <div class="live-info">
+      <p><strong>Batsmen:</strong> Virat Kohli* (85), KL Rahul (42)</p>
+      <p><strong>Bowler:</strong> Mitchell Starc (7.2-0-45-1)</p>
+    </div>
+
+    <h3>India Scorecard (Top 5)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Runs</th>
+          <th>Balls</th>
+          <th>4s</th>
+          <th>6s</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rohit Sharma</td>
+          <td>47</td>
+          <td>31</td>
+          <td>4</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>Shubman Gill</td>
+          <td>4</td>
+          <td>7</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>Virat Kohli*</td>
+          <td>85</td>
+          <td>92</td>
+          <td>8</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Shreyas Iyer</td>
+          <td>4</td>
+          <td>3</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>KL Rahul*</td>
+          <td>42</td>
+          <td>54</td>
+          <td>3</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
