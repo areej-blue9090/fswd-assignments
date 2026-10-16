@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Details</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); min-height: 100vh; margin: 0; padding: 40px 20px; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
+
+  <div id="root" style="width: 100%;"></div>
+
+  <script type="text/babel">
+    const employees = [
+      { id: 1, name: "Akash", department: "IT", salary: 60000 },
+      { id: 2, name: "Priya", department: "HR", salary: 45000 },
+      { id: 3, name: "Rahul", department: "Finance", salary: 55000 },
+      { id: 4, name: "Sneha", department: "IT", salary: 40000 }
+    ];
+
+    function EmployeeTable() {
+      return (
+        <div style={{
+          maxWidth: "750px",
+          margin: "0 auto",
+          background: "rgba(30, 41, 59, 0.85)",
+          backdropFilter: "blur(12px)",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          padding: "32px 28px",
+          borderRadius: "16px",
+          boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3)"
+        }}>
+          <h2 style={{
+            textAlign: "center",
+            color: "#f8fafc",
+            fontSize: "24px",
+            fontWeight: "700",
+            margin: "0 0 24px 0"
+          }}>
+            Employee Details
+          </h2>
+
+          <div style={{ overflowX: "auto", borderRadius: "10px", border: "1px solid #334155" }}>
+            <table style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              textAlign: "center",
+              fontSize: "14px"
+            }}>
+              <thead>
+                <tr style={{
+                  background: "linear-gradient(135deg, #0d9488 0%, #0f766e 100%)",
+                  color: "#ffffff"
+                }}>
+                  {["ID", "Name", "Department", "Salary"].map(
+                    (heading) => (
+                      <th key={heading} style={{
+                        padding: "14px 16px",
+                        fontWeight: "600",
+                        letterSpacing: "0.5px",
+                        borderBottom: "1px solid #334155"
+                      }}>
+                        {heading}
+                      </th>
+                    )
+                  )}
+                </tr>
+              </thead>
+
+              <tbody>
+                {employees.map((emp) => {
+                  const isHighSalary = emp.salary > 50000;
+                  return (
+                    <tr key={emp.id} style={{
+                      backgroundColor: isHighSalary ? "rgba(16, 185, 129, 0.12)" : "rgba(15, 23, 42, 0.6)",
+                      color: isHighSalary ? "#34d399" : "#e2e8f0",
+                      transition: "background-color 0.2s ease"
+                    }}>
+                      <td style={cellStyle}>{emp.id}</td>
+                      <td style={{ ...cellStyle, fontWeight: "500" }}>{emp.name}</td>
+                      <td style={cellStyle}>{emp.department}</td>
+                      <td style={{ ...cellStyle, fontWeight: "600" }}>₹{emp.salary.toLocaleString()}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "8px",
+            marginTop: "20px",
+            padding: "10px",
+            background: "rgba(16, 185, 129, 0.08)",
+            borderRadius: "8px",
+            border: "1px solid rgba(16, 185, 129, 0.2)"
+          }}>
+            <span style={{
+              width: "10px",
+              height: "10px",
+              borderRadius: "50%",
+              backgroundColor: "#34d399",
+              display: "inline-block"
+            }}></span>
+            <p style={{
+              margin: 0,
+              color: "#a7f3d0",
+              fontSize: "13px",
+              fontWeight: "500"
+            }}>
+              Highlighted rows indicate salary above ₹50,000.
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    const cellStyle = {
+      padding: "14px 16px",
+      borderBottom: "1px solid #334155"
+    };
+
+    ReactDOM.createRoot(document.getElementById("root"))
+      .render(<EmployeeTable />);
+  </script>
+
+</body>
+</html>
