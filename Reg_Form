@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Registration Form</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); min-height: 100vh; margin: 0; padding: 40px 20px; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
+
+<div id="root" style="width: 100%;"></div>
+
+<script type="text/babel">
+function StudentForm() {
+  const [form, setForm] = React.useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: ""
+  });
+
+  const [errors, setErrors] = React.useState({});
+  const [submitted, setSubmitted] = React.useState(false);
+
+  function handleChange(e) {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setSubmitted(false);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    let err = {};
+
+    if (!form.name.trim())
+      err.name = "Name is required";
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+      err.email = "Enter a valid email";
+
+    if (!/^[0-9]{10}$/.test(form.phone))
+      err.phone = "Phone must be 10 digits";
+
+    if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!\%*?&]).{8,}$/.test(form.password))
+      err.password = "Use 8+ characters, uppercase, lowercase, number and special character";
+
+    if (form.confirmPassword !== form.password)
+      err.confirmPassword = "Passwords do not match";
+
+    setErrors(err);
+
+    if (Object.keys(err).length === 0)
+      setSubmitted(true);
+    else
+      setSubmitted(false);
+  }
+
+  function field(label, name, type = "text") {
+    const hasError = !!errors[name];
+    
+    const inputStyle = {
+      width: "100%",
+      padding: "12px 14px",
+      marginTop: "6px",
+      border: `1.5px solid ${hasError ? '#f87171' : '#334155'}`,
+      borderRadius: "8px",
+      fontSize: "14px",
+      outline: "none",
+      background: "#0f172a",
+      color: "#f8fafc",
+      boxSizing: "border-box",
+      transition: "border-color 0.2s ease, box-shadow 0.2s ease"
+    };
+
+    return (
+      <div style={{ marginBottom: "18px" }}>
+        <label style={{ 
+          fontSize: "13px", 
+          fontWeight: "600", 
+          color: "#94a3b8",
+          letterSpacing: "0.5px",
+          textTransform: "uppercase" 
+        }}>
+          {label}
+        </label>
+        <input
+          type={type}
+          name={name}
+          value={form[name]}
+          onChange={handleChange}
+          style={inputStyle}
+        />
+        {hasError && (
+          <p style={{ color: "#f87171", fontSize: "12px", marginTop: "5px", marginBottom: "0", fontWeight: "500" }}>
+            {errors[name]}
+          </p>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div style={{
+      maxWidth: "440px",
+      margin: "0 auto",
+      background: "rgba(30, 41, 59, 0.85)",
+      backdropFilter: "blur(12px)",
+      border: "1px solid rgba(255, 255, 255, 0.1)",
+      padding: "35px 30px",
+      borderRadius: "16px",
+      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3)"
+    }}>
+      <div style={{ textAlign: "center", marginBottom: "28px" }}>
+        <h2 style={{ margin: 0, color: "#f8fafc", fontSize: "24px", fontWeight: "700" }}>
+          Student Registration
+        </h2>
+        <p style={{ margin: "6px 0 0", color: "#94a3b8", fontSize: "14px" }}>
+          Please fill out the form below to create your account
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit}>
+        {field("Full Name", "name")}
+        {field("Email Address", "email", "email")}
+        {field("Phone Number", "phone", "tel")}
+        {field("Password", "password", "password")}
+        {field("Confirm Password", "confirmPassword", "password")}
+
+        <button type="submit" style={{
+          width: "100%",
+          padding: "13px",
+          marginTop: "10px",
+          background: "linear-gradient(135deg, #0d9488 0%, #0f766e 100%)",
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
+          fontSize: "15px",
+          fontWeight: "600",
+          cursor: "pointer",
+          boxShadow: "0 4px 12px rgba(13, 148, 136, 0.3)",
+          transition: "transform 0.1s ease, box-shadow 0.2s ease"
+        }}>
+          Register Now
+        </button>
+      </form>
+
+      {submitted && (
+        <div style={{
+          marginTop: "24px",
+          padding: "16px",
+          background: "rgba(16, 185, 129, 0.1)",
+          border: "1px solid rgba(16, 185, 129, 0.3)",
+          borderRadius: "10px",
+          color: "#34d399"
+        }}>
+          <h3 style={{ margin: "0 0 8px 0", fontSize: "16px", fontWeight: "600" }}>
+            ✓ Registration Successful!
+          </h3>
+          <p style={{ margin: "4px 0", fontSize: "13px", color: "#a7f3d0" }}><strong>Name:</strong> {form.name}</p>
+          <p style={{ margin: "4px 0", fontSize: "13px", color: "#a7f3d0" }}><strong>Email:</strong> {form.email}</p>
+          <p style={{ margin: "4px 0", fontSize: "13px", color: "#a7f3d0" }}><strong>Phone:</strong> {form.phone}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root"))
+  .render(<StudentForm />);
+</script>
+
+</body>
+</html>
